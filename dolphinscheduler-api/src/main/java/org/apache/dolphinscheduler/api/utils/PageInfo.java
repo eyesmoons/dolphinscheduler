@@ -75,4 +75,14 @@ public class PageInfo<T> {
     public static <T> PageInfo<T> of(Integer currentPage, Integer pageSize) {
         return new PageInfo<>(currentPage, pageSize);
     }
+
+    public Integer getTotalPage() {
+        if (pageSize == null || pageSize == 0) {
+            pageSize = 7;
+        }
+        if (this.total % this.pageSize == 0) {
+            return (this.total / this.pageSize) == 0 ? 1 : (this.total / this.pageSize);
+        }
+        return (this.total / this.pageSize + 1);
+    }
 }
